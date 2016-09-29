@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "computepi.h"
+#include <math.h>
 
 #define CLOCK_ID CLOCK_MONOTONIC_RAW
 #define ONE_SEC 1000000000.0
@@ -14,7 +15,7 @@ int main(int argc, char const *argv[])
     if (argc < 2) return -1;
 
     int N = atoi(argv[1]);
-    int i, loop = 25;
+    int i, loop = 25;   //Initialize sample times : 25
 
     // Baseline
     clock_gettime(CLOCK_ID, &start);
@@ -60,6 +61,15 @@ int main(int argc, char const *argv[])
     clock_gettime(CLOCK_ID, &start);
     for(i = 0; i < loop; i++) {
         compute_pi_avx_unroll(N);
+    }
+    clock_gettime(CLOCK_ID, &end);
+    printf("%lf,", (double) (end.tv_sec - start.tv_sec) +
+           (end.tv_nsec - start.tv_nsec)/ONE_SEC);
+
+    // Leibniz
+    clock_gettime(CLOCK_ID, &start);
+    for(i = 0; i < loop; i++) {
+        compute_pi_leibniz(N);
     }
     clock_gettime(CLOCK_ID, &end);
     printf("%lf\n", (double) (end.tv_sec - start.tv_sec) +
