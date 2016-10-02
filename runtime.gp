@@ -20,3 +20,7 @@ plot  "result_clock_gettime.csv" using 1:2 title 'baseline' with lines lt rgb "r
      "" using 1:5 title 'avx' with lines lt rgb "green", \
      "" using 1:6 title 'avxunroll' with lines lt rgb "blue", \
      "" using 1:7 title 'leibniz' with lines lt rgb "purple", \
+     "" using 1:8 title 'leibniz_avx' with lines lt rgb "gray", \
+     "" using 1:9 title 'leibniz_avxunroll' with lines lt rgb "black", \
+     
+     

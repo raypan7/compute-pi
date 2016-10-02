@@ -30,6 +30,14 @@ int main(int argc, char const *argv[])
     pi = compute_pi_leibniz(N);
 #endif
 
+#if defined(LEIBNIZ_AVX)
+    pi = compute_pi_leibniz_avx(N);
+#endif
+
+#if defined(LEIBNIZ_AVXUNROLL)
+    pi = compute_pi_leibniz_avx_unroll(N);
+#endif
+
     printf("N = %d , pi = %lf\n", N, pi);
 
 
